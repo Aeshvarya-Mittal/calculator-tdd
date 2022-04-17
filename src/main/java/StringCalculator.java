@@ -6,6 +6,10 @@ public class StringCalculator {
         }
         else{
             String delimiter = ",";
+            if(text.matches("//(.*)\n(.*)")){
+                delimiter = Character.toString(text.charAt(2));
+                text = text.substring(4);
+            }
             String numList[] = getNumbers(text, delimiter+ "|\n");
             return sum(numList);
         }
