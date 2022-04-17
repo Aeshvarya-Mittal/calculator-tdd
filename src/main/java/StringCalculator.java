@@ -24,10 +24,22 @@ public class StringCalculator {
 
     private static int sum(String[] numbers){
         int total = 0;
+        String negative = "";
 
         for(String number : numbers){
+            if(toInt(number) < 0){
+                if(negative.equals(""))
+                    negative = number;
+                else
+                    negative += ("," + number);
+            }
+
             if(toInt(number)>0)
                 total += toInt(number);
+        }
+
+        if(!negative.equals("")){
+            throw new IllegalArgumentException("Negatives not allowed: " + negative);
         }
         return total;
     }
