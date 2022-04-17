@@ -6,7 +6,7 @@ public class StringCalculator {
         }
         else{
             String delimiter = ",";
-            String numList[] = getNumbers(text, delimiter);
+            String numList[] = getNumbers(text, delimiter+ "|\n");
             return sum(numList);
         }
     }
