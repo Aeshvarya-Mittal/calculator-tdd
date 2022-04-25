@@ -10,7 +10,7 @@ public class StringCalculator {
                 delimiter = Character.toString(text.charAt(2));
                 text = text.substring(4);
             }
-            String numList[] = getNumbers(text, delimiter+ "|\n");
+            String[] numList = getNumbers(text, delimiter+ "|\n");
             return sum(numList);
         }
     }
@@ -24,21 +24,21 @@ public class StringCalculator {
 
     private static int sum(String[] numbers){
         int total = 0;
-        String negative = "";
+        StringBuilder negative = new StringBuilder();
 
         for(String number : numbers){
             if(toInt(number) < 0){
-                if(negative.equals(""))
-                    negative = number;
+                if(negative.toString().equals(""))
+                    negative = new StringBuilder(number);
                 else
-                    negative += ("," + number);
+                    negative.append(",").append(number);
             }
 
             if(toInt(number)>0)
                 total += toInt(number);
         }
 
-        if(!negative.equals("")){
+        if(!negative.toString().equals("")){
             throw new IllegalArgumentException("Negatives not allowed: " + negative);
         }
         return total;
